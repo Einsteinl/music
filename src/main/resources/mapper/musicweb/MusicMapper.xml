@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lei.music.dao.musicweb.MusicDao">
+
+    <sql id="Base_Column_List">
+        id,pid,name,singer,path,img,Irc,date
+    </sql>
+    <select id="queryMusics" resultType="com.lei.music.entity.musicweb.Music">
+        select <include refid="Base_Column_List"/> from music
+    </select>
+
+    <insert id="saveMusic" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.lei.music.entity.musicweb.Music">
+        insert  into music(pid,name,singer,path,img,Irc,date) values (#{pid},#{name},#{singer},#{path},#{img},#{Irc},#{date})
+    </insert>
+
+    <delete id="removeMusicById" parameterType="Integer">
+        delete from music where id=#{id}
+    </delete>
+
+    <update id="updateMusic" parameterType="com.lei.music.entity.musicweb.Music">
+        update music set pid=#{pid},name=#{name},singer=#{singer},path=#{path},img=#{img},Irc=#{Irc},date=#{date} where id=#{id}
+    </update>
+
+
+</mapper>

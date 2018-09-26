@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lei.music.dao.musictop.hottopDao">
+
+    <sql id="Base_Column_List">
+        id,songName,singerName
+    </sql>
+    <select id="queryhotTops" resultType="com.lei.music.entity.musictop.Top">
+        select <include refid="Base_Column_List"/> from hottop
+    </select>
+
+    <insert id="savehotTop" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.lei.music.entity.musictop.Top">
+        insert  into hottop(songName,singerName) values (#{songName},#{singerName})
+    </insert>
+
+    <delete id="removehotTop" parameterType="Integer">
+        delete from hottop where id=#{id}
+    </delete>
+
+    <update id="updatehotTop" parameterType="com.lei.music.entity.musictop.Top">
+        update hottop set songName=#{songName},singerName=#{singerName} where id=#{id}
+    </update>
+
+
+</mapper>

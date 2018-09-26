@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lei.music.dao.musicweb.NoticeDao">
+
+    <sql id="Base_Column_List">
+        id,content,date
+    </sql>
+    <select id="queryNotices" resultType="com.lei.music.entity.musicweb.Notice">
+        select <include refid="Base_Column_List"/> from notice
+    </select>
+
+    <insert id="saveNotice" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.lei.music.entity.musicweb.Notice">
+        insert  into notice(content,date) values (#{content},#{date})
+    </insert>
+
+    <delete id="removeNotice" parameterType="Integer">
+        delete from notce where id=#{id}
+    </delete>
+
+    <update id="updateNotice" parameterType="com.lei.music.entity.musicweb.Notice">
+        update notice set content=#{content},date=#{date} where id=#{id}
+    </update>
+
+
+</mapper>

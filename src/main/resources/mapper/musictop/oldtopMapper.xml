@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lei.music.dao.musictop.oldtopDao">
+
+    <sql id="Base_Column_List">
+        id,songName,singerName
+    </sql>
+    <select id="queryoldTops" resultType="com.lei.music.entity.musictop.Top">
+        select <include refid="Base_Column_List"/> from oldtop
+    </select>
+
+    <insert id="saveoldTop" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.lei.music.entity.musictop.Top">
+        insert  into oldtop(songName,singerName) values (#{songName},#{singerName})
+    </insert>
+
+    <delete id="removeoldTop" parameterType="Integer">
+        delete from oldtop where id=#{id}
+    </delete>
+
+    <update id="updateoldTop" parameterType="com.lei.music.entity.musictop.Top">
+        update oldtop set songName=#{songName},singerName=#{singerName} where id=#{id}
+    </update>
+
+
+</mapper>
